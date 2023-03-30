@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap" rel="stylesheet"> 
+
+<html>
+<head>
+	<title>imageclipboard</title>
+
+    <!-- //discord tags -->
+	<meta property="og:title" content="Image Clipboard!" />
+	<meta property="og:description" content="You can use imageclipboard to send nitro emojis in discord without nitro" />
+	<meta property="og:image" content="https://imageclipboard.neocities.org/Resources/Example.png" />
+	<meta name="theme-color" content="#36393f" />
+	<meta name="twitter:card" content="summary_large_image" />
+
+    <!-- //google tags -->
+    <meta name="description" content="You can use imageclipboard to send nitro emojis in discord without nitro" />
+
+    <link rel="stylesheet" href="Default.css">
+    <script src="table.js"></script>
+    <script src="menu.js"></script>
+    <script src="helper.js"></script>
+    <script src="https://imageclipboard.neocities.org/data.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body onload="load()">
+    
+    <div class="header"> 
+        
+        <button type="button" id="FAVBUTTON" onClick="favSetup()">⭐</button>
+        <button type="button" id="HELPBUTTON" onClick="openHelpMenu()">Help</button>
+        <!-- Input Bar -->
+        <form class="center" id="input" onsubmit="addData()">
+            <input type="text" id="URL" autocomplete="off" placeholder="Enter image URL or data here"/>
+        </form>
+        <!--------------->
+
+        <!-- Edit Button -->
+        <button type="button" id="EDITBUTTON" onClick="openEditMenu()">Edit</button>
+        <!----------------->  
+
+        <!-- Edit Button -->
+        <button type="button" id="PACKBUTTON" onClick="openPackMenu()">Packs</button>
+        <!----------------->
+
+        <div id="EDITMODE">
+            <h1 class="headerInfo">Click objects to delete</h1>
+            <button type="button" id="BACKBUTTON" class="menuButton" onClick="defaultMode()">Go Back</button><br>
+        </div>
+
+        <div id="FAVMODE">
+            <h1 class="headerInfo">Click objects to favourite</h1>
+            <button type="button" id="BACKBUTTON" class="menuButton" onClick="defaultMode()">Go Back</button><br>
+        </div>
+
+    </div>
+
+    <!-- Images are listed here -->
+    <div class="flex" id="FavImageList">
+    
+    </div><hr style="width: 90vw;">
+    <div class="flex" id="ImageList">
+        
+    </div>
+    
+    <div id="GRAYBACKGROUND" onclick="closeMenu()"></div>
+
+    <div id="EDITMENU" class="popUpMenu">
+        <h1>Settings</h1>
+        <button type="button" class="menuButton" onclick="openImportMenu()"">Import</button><br>
+        <button type="button" class="menuButton" onclick="exportData()">Export</button><br>
+        <button type="button" class="menuButton" style="margin-top: 20px;" onclick="editSetUp()">Delete</button><br>
+        <button type="button" class="menuButton" style="margin-top: 40px; background-color: red;" onclick="dangerSetup()">DANGER SETTINGS</button>
+    </div>
+
+    <div id="PACKMENU" class="popUpMenu">
+        <h1>Packs</h1>
+        <br><p>Join the scuffed discord server <a href="https://discord.gg/KT29qG3ewP" target="_blank">https://discord.gg/KT29qG3ewP</a><br><br>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/default.json')">Default</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/catpack.json')">Cats</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/applepack.json')">Apple Emojis</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/menherachanpack.json')">Menhera chan</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/bocchi.json')">Bocchi the Rock!</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/spyxfamily.json')">Spy x Family</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/chainsawman.json')">Chainsaw Man</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/portal.json')">Portal Pack</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/projectsekai.json')">Project Sekai</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/karanokiokustickers.json')">Kara No Kioku Stickers</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/twitchpack.json')">Twitch Emotes</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/clashroyalepack.json')">Clash Royale</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/onepiecepack.json')">One Piece</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/halopack.json')">Halo</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/animalcrossingpack.json')">Animal Crossing</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/genshinpack.json')">Genshin Impact</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/omori1pack.json')">Omori 1</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/omoristicker.json')">Omori Stickers</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/omori2pack.json')">Omori 2 (contains spoilers)</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/undertalepack.json')">r/Undertale</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/deltarunepack.json')">r/Deltarune</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/celestepack.json')">Celeste</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/apexpack.json')">Apex Legends</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/valorantpack.json')">Valorant</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/yotsubapack.json')">Yotsuba&</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/trollfacepack.json')">Troll Faces</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/verifiedpack.json')">Verified</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/minecraftpack.json')">Minecraft</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/dungeonpack.json')">Minecraft Dungeons</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/belugapack.json')">Beluga</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/lofigirlpack.json')">Lofi Girl</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/animepack.json')">Anime</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/tommyinnitpack.json')">Tommyinnit</button>
+        
+    </div>
+
+    <div id="IMPORTMENU" class="popUpMenu">
+        <h1>Import</h1>
+        <input type="file" id="importinput" class="file" accept=".json" onchange="loadFile(this.files[0])">
+    </div>
+
+    <div id="PACKPROMPT" class="popUpMenu">
+        <h1 id="PACKPROMPTHEADING">Are you sure you want to import this pack?</h1><br>
+        <button type="button" class="menuButton" onclick="packImport()">Yes</button>
+        <button type="button" class="menuButton" onclick="packMenuBack()">No</button>
+    </div>
+
+    <div id="HELPMENU" class="popUpMenu">
+        <h1>Help</h1>
+        <iframe width="239" height="425" src="https://www.youtube.com/embed/NVdCK1kaPIo" title="Use nitro emojis for free (no download)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br><h3>join the discord server</h3><br><iframe src="https://discord.com/widget?id=969496044259901440&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </div>
+
+    <div id="DANGERMENU" class="popUpMenu">
+        <h1 style="background-color: red;">DANGER</h1>
+        <button type="button" class="menuButton" onclick="deleteDuplicates()"">Delete Duplicates</button><br>
+        
+        <button type="button" class="menuButton" style="margin-top: 40px; background-color: red;" onclick="deleteAllPopUp()">Delete All (your favourites are safe)</button><br>
+        <button type="button" class="menuButton" style="margin-top: 40px; background-color: red;" onclick="resetDataPopUp()">Reset (your favourites are safe)</button>
+    </div>
+
+    <div id="deleteAllPopUp" class="popUp">
+        <h1>Are you sure you want to delete all data?<br>THIS ACTION IS IRREVERSIBLE</h1>
+        <button type="button" class="menuButton" style="background-color: red;" onclick="deleteAll()">Yes</button>
+        <button type="button" class="menuButton" onclick="closeMenu()">No</button>
+    </div>
+
+    <div id="resetDataPopUp" class="popUp">
+        <h1>Are you sure you want to reset data to default?<br>THIS ACTION IS IRREVERSIBLE</h1>
+        <button type="button" class="menuButton" style="background-color: red;" onclick="resetData()">Yes</button>
+        <button type="button" class="menuButton" onclick="closeMenu()">No</button>
+    </div>
+
+
+</body>
+</html>

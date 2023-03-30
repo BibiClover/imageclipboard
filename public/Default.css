@@ -1,0 +1,222 @@
+:root {
+    --hover-color: #747c8b;
+}
+
+body {
+    background-color: #36393f;
+    display: flex;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    flex-direction: column;
+}
+
+a {
+    color: aqua;
+}
+
+.center {
+    text-align: center;
+    align-items: center;
+    display: flex;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#inputBar {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.item {
+    padding: 10px;
+    border-radius: 10px;
+    color: #DCDDDE;
+    font-size: 24px;
+}
+
+.item:hover {
+    background-color: var(--hover-color);
+    border-radius: 10px;
+}
+
+#URL {
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    background-color: #40444B;
+    color: #DCDDDE;
+    text-align: center;
+    width: 80vw;
+}
+
+#copyURL {
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    background-color: #40444B;
+    color: #DCDDDE;
+    text-align: center;
+}
+
+#input {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#EDITBUTTON {
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    margin-left: 0.5vw;
+    justify-content: center;
+    align-items: center;
+}
+
+#PACKBUTTON {
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    margin-left: 0.5vw;
+    justify-content: center;
+    align-items: center;
+}
+
+#HELPBUTTON {
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    margin-right: 0.5vw;
+    justify-content: center;
+    align-items: center;
+}
+
+#FAVBUTTON {
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    margin-right: 0.5vw;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 6px;
+}
+
+.popUpMenu {
+    position: absolute;
+    display: none;
+    overflow: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    background-color: #2F3136;
+    color: #DCDDDE;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+}
+
+.popUp {
+    position: absolute;
+    display: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 30%;
+    background-color: #2F3136;
+    color: #DCDDDE;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+}
+
+.menuButton {
+    border: none;
+    border-radius: 10px;
+    background-color: #36393F;
+    color: #DCDDDE;
+    padding: 20px 50px;
+    margin: 5px;
+    font-size: 18px;
+}
+
+.menuButton:hover {
+    background-color: var(--hover-color);
+}
+
+#GRAYBACKGROUND {
+    position:fixed;
+    display: none;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000000;
+    opacity: 0.5;
+}
+
+.file {
+    border: none;
+    border-radius: 10px;
+    background-color: #36393F;
+    color: #DCDDDE;
+    padding: 20px 50px;
+    margin: 5px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.redButton {
+    background-color: red;
+    color: white;
+    padding: 10px;
+}
+
+#EDITMODE {
+    display: none;
+}
+
+#FAVMODE {
+    display: none;
+}
+
+.headerInfo {
+    color: #DCDDDE;
+}
+
+.ask {
+    display: none;
+}

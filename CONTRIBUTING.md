@@ -11,4 +11,4 @@ There are many ways to contribute, here are some:
 - Add features 
 
 ## Community
-In the [imageclipboard discord server](https://discord.gg/image-clipboard-969496044259901440) go to '#coding' to ask questions about the source code and other programming topics.
+In the [imageclipboard discord server](https://discord.gg/image-clipboard-969496044259901440) go to `#coding` to ask questions about the source code and other programming topics.

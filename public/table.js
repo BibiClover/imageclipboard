@@ -1,15 +1,27 @@
 var selection;
 var editMode = false;
 var favMode = false;
+
+
 function load() {
-    list();
+
     if (localStorage.getItem("firstTime") != "true") {
         openHelpMenu();
         localStorage.setItem("firstTime", "true");
+    }   
+    
+    //Convert from v1 single list (copyData) to v2 tabs (localData)
+    if(localStorage.getItem("copyData") != null) {
+        let localData = [JSON.parse(localStorage.getItem("copyData"))];
+        localStorage.setItem("localData", JSON.stringify(localData));
+        localStorage.removeItem("copyData");
     }
-    else if(localStorage.getItem("copyData").toString()[0] != "[") {
-        localStorage.setItem("copyData", "[]");
+    else if(localStorage.getItem("localData") == null)
+    {
+        localStorage.setItem("localData", JSON.stringify(defaultData));
     }
+
+    list();
 }
 function addData() {
     let data = document.getElementById('URL').value.toString().trim();
@@ -70,24 +82,42 @@ function addData() {
         }
     }
     
-    var copyDataJson = JSON.parse(localStorage.getItem("copyData"));
+    var setData = JSON.parse(localStorage.getItem("localData"))
+    var folderDataJson = setData[currentFolder];
     // copyDataJson.push(url);
     for (var i = newArray.length; i >= 0; i--) {
-        copyDataJson.push(newArray[i]);
+        folderDataJson.push(newArray[i]);
     }
-    localStorage.setItem("copyData", JSON.stringify(copyDataJson));
+    setData[currentFolder] = folderDataJson;
+    localStorage.setItem("localData", JSON.stringify(setData));
     list();
 }
 function list() {
-    if (localStorage.getItem("copyData") == null) {
-        let ii = 0;
-        localStorage.setItem("copyData", JSON.stringify(defaultData));
-        localStorage.setItem("updateVersion", JSON.stringify(ii));
+    
+    // if (localStorage.getItem("copyData") == null) {
+    //     let ii = 0;
+    //     localStorage.setItem("copyData", JSON.stringify(defaultData));
+    //     localStorage.setItem("updateVersion", JSON.stringify(ii));
+    // }
+    // if (localStorage.getItem("favData") == null) {
+    //     localStorage.setItem("favData", '[]');
+    // }
+
+    var localData = JSON.parse(localStorage.getItem("localData"));
+    if (localData == null)
+    {
+        localData = [];
+        localStorage.setItem("localData", JSON.stringify(localData));
+    }
+    else if (localData[currentFolder] == null)
+    {
+        localData[currentFolder] = [];
+        localStorage.setItem("localData", JSON.stringify(localData));
     }
     if (localStorage.getItem("favData") == null) {
         localStorage.setItem("favData", '[]');
     }
-
+    listFolders()
     //fav list
     let favImageList = document.getElementById('FavImageList');
     let favHtml = "";
@@ -100,9 +130,9 @@ function list() {
     //normal list
     let imageList = document.getElementById('ImageList');
     let html = "";
-    let copyDataJson = JSON.parse(localStorage.getItem("copyData"));
-    for (var i = copyDataJson.length; i >= 0; i--) {
-        html += image(copyDataJson[i], i, "copyData");
+    let folderDataJson = JSON.parse(localStorage.getItem("localData"))[currentFolder];
+    for (var i = folderDataJson.length; i >= 0; i--) {
+        html += image(folderDataJson[i], i, "localData");
     }
     imageList.innerHTML = html;
 }
@@ -117,8 +147,9 @@ function copy(element, src, index, listName) {
         selection = element;
     }
     else if (editMode) {
-        var jsonValue = JSON.parse(localStorage.getItem(listName));
-        jsonValue.splice(index, 1);
+        let jsonValue = JSON.parse(localStorage.getItem("localData"));
+        jsonValue[currentFolder].splice(index, 1);
+        jsonValue[currentFolder] = jsonValue;
         localStorage.setItem(listName, JSON.stringify(jsonValue));
         list();
     }
@@ -130,7 +161,7 @@ function copy(element, src, index, listName) {
         localStorage.setItem(listName, JSON.stringify(jsonValue));
         
         //add
-        var newListName = (listName == "copyData") ? "favData" : "copyData";
+        var newListName = (listName == "localData") ? "favData" : "localData";
         var newDataJson = JSON.parse(localStorage.getItem(newListName));
         newDataJson.push(src);
         localStorage.setItem(newListName, JSON.stringify(newDataJson));
@@ -141,8 +172,25 @@ function copy(element, src, index, listName) {
 function image(url, index, list) {
     if (!url)
         return "";
-    if (url.slice(0, 4) == "http") {
-        return "<div class='item' onclick='copy(this, \"" + url + "\", \"" + index + "\", \"" + list + "\")'><image src='" + url + " '/></div>";
+    if (url.slice(0, 4) == "http") 
+    {
+        var bigUrl = url;
+        // if (bigUrl.includes("?size=")) {
+        //     bigUrl = url.split('?')[0];
+        //     bigUrl = bigUrl + "?size=256";
+        // }
+        if (bigUrl.includes("?size=")) 
+        {
+            if (url.includes("&quality=loseless")) {
+                bigUrl = url.split('?')[0];
+                bigUrl = bigUrl + "?size=256&quality=loseless";
+            }
+            else {
+                bigUrl = url.split('?')[0];
+                bigUrl = bigUrl + "?size=256";
+            }
+        }
+        return "<div class='item' onclick='copy(this, \"" + url + "\", \"" + index + "\", \"" + list + "\")'><image style='height: 48px;' src='" + bigUrl + " '/></div>";
     }
     else {
             return "<div class='item' onclick='copy(this, \"" + url + "\", \"" + index + "\", \"" + list + "\")'>" + url + "</div>";

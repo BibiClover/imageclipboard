@@ -21,9 +21,13 @@
     <script src="table.js"></script>
     <script src="menu.js"></script>
     <script src="helper.js"></script>
+    <script src="folder.js"></script>
+    <script src="data.js"></script>
     <script src="https://imageclipboard.neocities.org/data.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </script>
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
@@ -31,11 +35,11 @@
     
     <div class="header"> 
         
-        <button type="button" id="FAVBUTTON" onClick="favSetup()">⭐</button>
+        <!-- <button type="button" id="FAVBUTTON" onClick="favSetup()">⭐</button> -->
         <button type="button" id="HELPBUTTON" onClick="openHelpMenu()">Help</button>
         <!-- Input Bar -->
         <form class="center" id="input" onsubmit="addData()">
-            <input type="text" id="URL" autocomplete="off" placeholder="Enter image URL or data here"/>
+            <input type="text" id="URL" autocomplete="off" placeholder="Enter image URL or data here" autofocus />
         </form>
         <!--------------->
 
@@ -43,9 +47,9 @@
         <button type="button" id="EDITBUTTON" onClick="openEditMenu()">Edit</button>
         <!----------------->  
 
-        <!-- Edit Button -->
+        <!-- Pack Button -->
         <button type="button" id="PACKBUTTON" onClick="openPackMenu()">Packs</button>
-        <!----------------->
+        <!--------------- -->
 
         <div id="EDITMODE">
             <h1 class="headerInfo">Click objects to delete</h1>
@@ -59,13 +63,19 @@
 
     </div>
 
-    <!-- Images are listed here -->
-    <div class="flex" id="FavImageList">
+    <!-- Fav images are listed here -->
+    <div class="flex" id="FavImageList"></div>
     
-    </div><hr style="width: 90vw;">
-    <div class="flex" id="ImageList">
+    <p class="text"><span>TABS</span><p>
+
+    <!-- Folder system test -->
+    <div class="flex" id="FolderList">
         
     </div>
+
+    </div><hr style="width: 90vw;">
+
+    <div class="flex" id="ImageList"></div>
     
     <div id="GRAYBACKGROUND" onclick="closeMenu()"></div>
 
@@ -83,13 +93,12 @@
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/default.json')">Default</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/catpack.json')">Cats</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/applepack.json')">Apple Emojis</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/menherachanpack.json')">Menhera chan</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/bocchi.json')">Bocchi the Rock!</button>
+        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/karanokiokustickers.json')">Kara No Kioku Stickers</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/spyxfamily.json')">Spy x Family</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/chainsawman.json')">Chainsaw Man</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/portal.json')">Portal Pack</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/projectsekai.json')">Project Sekai</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/karanokiokustickers.json')">Kara No Kioku Stickers</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/twitchpack.json')">Twitch Emotes</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/clashroyalepack.json')">Clash Royale</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/onepiecepack.json')">One Piece</button>
@@ -113,7 +122,6 @@
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/lofigirlpack.json')">Lofi Girl</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/animepack.json')">Anime</button>
         <button type="button" class="menuButton" onclick="packImportPrompt('./packs/tommyinnitpack.json')">Tommyinnit</button>
-        
     </div>
 
     <div id="IMPORTMENU" class="popUpMenu">
@@ -153,6 +161,7 @@
         <button type="button" class="menuButton" onclick="closeMenu()">No</button>
     </div>
 
+    
 
 </body>
 </html>

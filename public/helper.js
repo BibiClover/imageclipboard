@@ -7,14 +7,16 @@ function download(content, fileName, contentType) {
 }
 function deleteDuplicates() {
     //For normal list
-    var current = JSON.parse(localStorage.getItem("copyData"));
+    var currentSet = JSON.parse(localStorage.getItem("localData"));
+    var current = currentSet[currentFolder]
     var array = [];
     for (var i = 0; i < current.length; i++) {
         if (!array.includes(current[i].toString())) {
             array.push(current[i].toString());
         }
     }
-    localStorage.setItem("copyData", JSON.stringify(array));
+    currentSet[currentFolder] = array;
+    localStorage.setItem("localStorage", JSON.stringify(currentSet));
     
     // For fav list
     current = JSON.parse(localStorage.getItem("favData"));

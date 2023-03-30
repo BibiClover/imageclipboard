@@ -28,7 +28,7 @@ function packImportPrompt(url) {
 
 function packImport() {
     closeMenu();
-    var copyDataJson = JSON.parse(localStorage.getItem("copyData")); //gets copyData value
+    var localDataJson = JSON.parse(localStorage.getItem("localData"));
     for (var i = 0; i < currentImportPack.length; i++) {
         let url = currentImportPack[i];
         if (url.startsWith("https://cdn.discordapp.com/emojis/") && url.includes("?size=")) {
@@ -41,9 +41,9 @@ function packImport() {
                 url = url + "?size=48";
             }
         }
-        copyDataJson.push(url);
+        localDataJson[currentFolder].push(url);
     }
-    localStorage.setItem("copyData", JSON.stringify(copyDataJson)); //sets copyData value
+    localStorage.setItem("localData", JSON.stringify(localDataJson)); //sets copyData value
     list();
 }
 

@@ -9,6 +9,30 @@ body {
     flex-direction: column;
 }
 
+.text {
+    font-size: 1rem;
+    position: relative;
+    overflow:hidden;
+    margin: 0;
+}
+  
+.text span {
+    padding-right: 17px;
+    background-color: #36393f;
+    color: #DCDDDE;
+}
+  
+.text:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.5em;
+    border-top: 1px solid black;
+    z-index: -1;
+}
+
 a {
     color: aqua;
 }
@@ -42,6 +66,18 @@ a {
     border-radius: 10px;
     color: #DCDDDE;
     font-size: 24px;
+}
+
+.button {
+    padding: 10px;
+    border-radius: 10px;
+    color: #DCDDDE;
+    font-size: 24px;
+}
+
+.button:hover {
+    background-color: var(--hover-color);
+    border-radius: 10px;
 }
 
 .item:hover {

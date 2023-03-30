@@ -1,4 +1,3 @@
 # Dev branch
 
-Currently `dev` branch is the same as the `main` branch.
-I have a dev version of imageclipboard with nearly finished tabs which I will add to this branch soon.
+The dev branch has a rough version of a tab system. For basic changes contribute to main.

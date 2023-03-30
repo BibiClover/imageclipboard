@@ -1,5 +1,4 @@
-# imageclipboard
+# Dev branch
 
-Image clipboard is a way to save image urls to localstorage and easily copy them later on
-
-Check `CONTRIBUTING.md` on how to contribute and communicate with other community members
+Currently `dev` branch is the same as the `main` branch.
+I have a dev version of imageclipboard with nearly finished tabs which I will add to this branch soon.

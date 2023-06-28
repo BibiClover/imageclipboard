@@ -13,6 +13,10 @@ function load() {
 }
 function addData() {
     let data = document.getElementById('URL').value.toString().trim();
+    if (data.startsWith("<:" || "<a:")){
+        index = data.indexOf(":", 2)
+        data = data.slice(index).replace(":" , "https://cdn.discordapp.com/emojis/").replace(">", ".webp?size=48")
+    }
     //guard - Make sure its a URL
     // if(!url.startsWith("http"))
     // {

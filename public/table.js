@@ -13,10 +13,6 @@ function load() {
 }
 function addData() {
     let data = document.getElementById('URL').value.toString().trim();
-    if (data.startsWith("<:" || "<a:")){
-        index = data.indexOf(":", 3)
-        data = data.slice(index).replace(":" , "https://cdn.discordapp.com/emojis/").replace(">", ".webp?size=48")
-    }
     //guard - Make sure its a URL
     // if(!url.startsWith("http"))
     // {
@@ -36,6 +32,29 @@ function addData() {
     // }
     let dataArray = data.split('"');
     let newArray = [];
+    let copyTextIndex = data.indexOf("<:");
+    if (copyTextIndex === -1)
+    {
+        copyTextIndex = data.indexOf("<a:");
+    }
+    if (copyTextIndex != -1) {
+        let copyTextArray = data.split("<");
+        for (let i = 0; i < copyTextArray.length; i++) { // limit based off discord message cap to prevent an infinite loop
+            if(copyTextArray[i].startsWith("a:"))
+            {
+                let index = copyTextArray[i].indexOf(":", 2);
+                let data = copyTextArray[i].slice(index).replace(":", "https://cdn.discordapp.com/emojis/").replace(">", ".gif?size=48");
+                dataArray.push(data);
+            }
+            else if (copyTextArray[i].startsWith(":"))
+            {
+                let index = copyTextArray[i].indexOf(":", 1);
+                let data = copyTextArray[i].slice(index).replace(":", "https://cdn.discordapp.com/emojis/").replace(">", ".webp?size=48");
+                dataArray.push(data);
+            }
+        }
+
+    }
     for (let i = 0; i < dataArray.length; i++)
     {
         if(dataArray[i].startsWith("https://cdn.discordapp.com/emojis/"))

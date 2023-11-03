@@ -21,6 +21,7 @@
     <script src="table.js"></script>
     <script src="menu.js"></script>
     <script src="helper.js"></script>
+    <script src="packs.js"></script>
     <script src="https://imageclipboard.neocities.org/data.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,40 +81,13 @@
     <div id="PACKMENU" class="popUpMenu">
         <h1>Packs</h1>
         <br><p>Join the scuffed discord server <a href="https://discord.gg/KT29qG3ewP" target="_blank">https://discord.gg/KT29qG3ewP</a><br><br>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/default.json')">Default</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/catpack.json')">Cats</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/applepack.json')">Apple Emojis</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/menherachanpack.json')">Menhera chan</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/bocchi.json')">Bocchi the Rock!</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/spyxfamily.json')">Spy x Family</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/chainsawman.json')">Chainsaw Man</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/portal.json')">Portal Pack</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/projectsekai.json')">Project Sekai</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/karanokiokustickers.json')">Kara No Kioku Stickers</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/twitchpack.json')">Twitch Emotes</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/clashroyalepack.json')">Clash Royale</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/onepiecepack.json')">One Piece</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/halopack.json')">Halo</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/animalcrossingpack.json')">Animal Crossing</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/genshinpack.json')">Genshin Impact</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/omori1pack.json')">Omori 1</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/omoristicker.json')">Omori Stickers</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/omori2pack.json')">Omori 2 (contains spoilers)</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/undertalepack.json')">r/Undertale</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/deltarunepack.json')">r/Deltarune</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/celestepack.json')">Celeste</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/apexpack.json')">Apex Legends</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/valorantpack.json')">Valorant</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/yotsubapack.json')">Yotsuba&</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/trollfacepack.json')">Troll Faces</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/verifiedpack.json')">Verified</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/minecraftpack.json')">Minecraft</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/dungeonpack.json')">Minecraft Dungeons</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/belugapack.json')">Beluga</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/lofigirlpack.json')">Lofi Girl</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/animepack.json')">Anime</button>
-        <button type="button" class="menuButton" onclick="packImportPrompt('./packs/tommyinnitpack.json')">Tommyinnit</button>
-        
+            <!--return false to avoid accidentally refreshing the page from pressing enter-->
+            <form class="center" id="input" onsubmit="return false">
+                <input type="text" id="searchPack" autocomplete="off" placeholder="Enter a pack name leave blank to show all"/>
+            </form>
+        <div id="packList">
+
+        </div>
     </div>
 
     <div id="IMPORTMENU" class="popUpMenu">

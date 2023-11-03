@@ -12,7 +12,7 @@ function packMenuBack() {
     openPackMenu();
 }
 function packImportPrompt(url) {
-    
+
     fetch(url)
     .then(res => res.json())
     .then(out =>
@@ -147,4 +147,26 @@ async function loadFile(file) {
     }
     localStorage.setItem("copyData", JSON.stringify(copyDataJson));
     list();
+}
+
+//Wait for page to load and then add the eventlistener for search pack
+window.addEventListener("DOMContentLoaded", (event) => {
+    searchPack()
+    const autoSearch = document.getElementById("searchPack").addEventListener('keyup', searchPack)
+});
+function searchPack(){
+    let packName = document.getElementById("searchPack");
+    let packList = document.getElementById("packList");
+    while (packList.hasChildNodes()){
+        packList.removeChild(packList.firstChild)
+    }  
+    for (pack of packs) {
+        if (pack.toLowerCase().includes(packName.value.toLowerCase()) || packName.value == "") {
+            let newButton = document.createElement('button');
+            newButton.className = "menuButton";
+            newButton.textContent = pack.replace(".json", "")
+            newButton.setAttribute("onclick", `packImportPrompt('./packs/${pack}')`);
+            packList.appendChild(newButton);
+        }
+    }   
 }
